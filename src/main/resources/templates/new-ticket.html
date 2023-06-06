@@ -1,0 +1,32 @@
+<!-- HTML FORM, TABLE, DIV, IMG, LINK, A, LIST -->
+<form th:action="@{/ticket/new}" method="post" th:object="${ticket}">
+	<div>
+		<label>Id : </label> 
+		<input type="number" name="tiketId" />
+	</div>
+	<div>
+		<label>Client Name</label> 
+		<input type="text" name="clientName" />
+	</div>
+	<div>
+		<label>Client Phone</label> 
+		<input type="text" name="clientPhone" />
+	</div>
+	<div>
+		<label>Content</label> 
+		<input type="text" name="content" />
+	</div>
+	<div>
+		<input name="status" type="radio" value="true" />Nhan 
+		<input name="status" type="radio" value="false" />Tu choi
+	</div>
+	<div>
+		<label>Department: </label> 
+		<select name="department.id">
+			<option th:each="d : ${departmentList}" th:value="${d.id}" th:text="${d.name}" />
+		</select>
+	</div>
+	<div>
+		<button type="submit">Create</button>
+	</div>
+</form>

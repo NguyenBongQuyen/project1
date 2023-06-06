@@ -1,0 +1,21 @@
+<html>
+<head>
+	<title>login.html</title>
+</head>
+<body>
+	<a th:href="@{/login?lang=vi}">Tieng Viet</a>
+	<a th:href="@{/login?lang=en}">English</a>
+
+	<h1 th:text="#{label.login}">Login</h1>
+	<!-- @{url} dùng th: -->
+	<form th:action="@{/login}" method="post">
+		<label th:text="#{label.username}">Username: </label>
+		<input type="text" name="username">
+		
+		<label th:text="#{label.password}">Password: </label>
+		<input type="password" name="password">
+		
+		<button type="submit" th:text="#{label.login}">Login</button>
+	</form>
+</body>
+</html>

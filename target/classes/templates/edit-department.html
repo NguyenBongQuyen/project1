@@ -1,0 +1,16 @@
+<!-- HTML FORM, TABLE, DIV, IMG, LINK, A, LIST -->
+<form th:action="@{/department/edit}" method="post"
+	th:object="${department}">
+	<div>
+		<label>Id:</label>
+		<input readonly name="id" th:value="${department.id}" />
+	</div>
+	<div>
+		<label th:text="#{department.name}"></label>
+		<input type="text" th:field="*{name}"/>
+		<p th:errors="*{name}"></p>
+	</div>
+	<div>
+		<button type="submit">Save</button>
+	</div>
+</form>

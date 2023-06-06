@@ -1,0 +1,30 @@
+<!-- HTML FORM, TABLE, DIV, IMG, LINK, A, LIST -->
+<form th:action="@{/ticket/edit}" method="post" th:object="${ticket}">
+   <div>
+     <label>Id : </label>
+       <input readonly="readonly" name ="id" th:value="${ticket.id}"/>
+   </div>
+      <div>
+       <label>Client Name : </label>
+       <input type="text" th:field="${ticket.clientName}"/>
+        <p th:errors="*{clientName}"/>
+     </div>
+     <div>
+       <label>Client Phone : </label>
+       <input type="text" th:field="${ticket.clientPhone}"/>
+        <p th:errors="*{clientPhone}"/>
+     </div>
+     <div>
+       <label>Content : </label>
+       <input type="text" th:field="${ticket.content}"/>
+        <p th:errors="*{content}"/>
+     </div>
+     <div>
+       <label>Status : </label>
+        <input name="status" type="radio" value="true" />Nhan
+       <input name="status" type="radio" value="false" />Tu choi
+     </div>
+      <div>
+       <button type="submit">Create</button>
+      </div>
+   </form>

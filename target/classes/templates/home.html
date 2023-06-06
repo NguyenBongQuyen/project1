@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Hòm thư góp ý</title>
+    <link rel="stylesheet" href="/css/homestyle.css">
+    <script type="text/javascript" src="../bootstrap5/js/bootstrap.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+</head>
+
+<body>
+    <div class="container">
+        <img src="/img/mail.jpg" alt="" width="30px" height="30px">
+        <h1>He thong tiep nhan y kien cham soc khach hang</h1>
+    </div>
+    <div class="homedetail">
+        <div class="box1">
+            <nav>
+                <ul>
+                    <li style="margin-top: 20px"><a th:href="@{/ticket/search}">Quan ly khieu nai</a></li>
+                    <li style="margin-top: 20px"><a th:href="@{/department/list}">Quan ly phong ban</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <div class="box2">
+            <a th:href="@{/ticket/search}">Quan ly khieu nai >...</a>
+            <div style="margin-top: 20px" class="detail">
+
+                <form th:action="@{/ticket/searchhome}" method="get" th:object="${searchDTO}">
+                    <div style="display: flex;">
+                        <div style="margin: 10px">
+                            <input th:field="*{keyword}" type="text"
+                                placeholder="Tim kiem khieu nai ID Ticket, SDT Khach hang...">
+                            <button type="submit">Tim kiem</button>
+                        </div>
+                        <div style="margin: 10px">
+                            <label>Department: </label>
+                            <select name="department.id">
+                                <option th:each="d : ${departmentList}" th:value="${d.id}" th:text="${d.name}" />
+                            </select>
+                        </div>
+                        <div style="margin: 10px">
+                            <label>From Date : </label>
+                            <!-- <input th:field="*{start}" type="text" placeholder="dd/MM/yyyy" /> -->
+                        </div>
+                        <div style="margin: 10px">
+                            <label>To Date : </label>
+                            <!-- <input th:field="*{end}" type="text" placeholder="dd/MM/yyyy" /> -->
+                        </div>
+                    </div>
+                </form>
+                <button onclick="window.location.href='/ticket/new'" style="margin-left: 10px"
+                    class="create-button">Create</button>
+
+            </div>
+            <div style="margin-top: 40px">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <table id="tbdata" class="table table-bordered table-inverse table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Ticket ID</th>
+                                    <th>Phong ban tiep nhan</th>
+                                    <th>SDT khach hang</th>
+                                    <th>Y kien khach hang</th>
+                                    <th>Thoi gian tiep nhan</th>
+                                    <th>Noi dung xu ly</th>
+                                    <th>Trang thai xu ly</th>
+                                    <th>Thoi gian xu ly</th>
+                                </tr>
+
+                            </thead>
+                            <tr th:each="t : ${ticketList}">
+                                <td th:text="${t.id}">1</td>
+                                <td th:text="${t.department?.name}"></td>
+                                <td th:text="${t.clientPhone}">Client phone</td>
+                                <td th:text="${t.content}">Content</td>
+                                <td th:text="${#dates.format(t.processDate, 'dd/MM/yyyy HH:mm')}">Process At</td>
+                                <td th:text="${t.status}">Status</td>
+                                <td th:text="${t.status}">Status</td>
+                                <td th:text="${#dates.format(t.processDate, 'dd/MM/yyyy HH:mm')}">Process At</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,32 @@
+<!-- HTML FORM, TABLE, DIV, IMG, LINK, A, LIST -->
+<form th:action="@{/user/edit}" method="post">
+	<div>
+		<label>Id:</label>
+		<input readonly name="id" th:value="${user.id}" />
+	</div>
+	<div>
+		<label>Name:</label>
+		<input type="text" name="name" th:value="${user.name}"/>
+	</div>
+	<div>
+		<label>Age:</label>
+		<input type="number" name="age" th:value="${user.age}"/>
+	</div>
+	<div>
+		<label>Username:</label>
+		<input type="text" name="username" th:value="${user.username}" />
+	</div>
+	<div>
+		<label>Department:</label>
+		<select name="department" th:field="${user.department}">
+			<option  th:each="d : ${departmentList}" th:value="${d.id}" th:text="${d.name}"></option>
+		</select>
+	</div>
+	<div>
+		<label>Birthdate:</label>
+		<input type="text" name="birthdate" placeholder="dd/MM/yyyy" />
+	</div>
+	<div>
+		<button type="submit">Save</button>
+	</div>
+</form>

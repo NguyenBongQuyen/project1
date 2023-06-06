@@ -1,0 +1,40 @@
+@charset "ISO-8859-1";
+
+.container {
+    display: flex;
+    align-items: center;
+}
+.container img {
+    margin-right: 10px;
+     margin-left: 10px
+}
+
+.homedetail {
+     display: flex;
+    align-items: center;
+      margin-right: 10px;
+     
+}
+.detail {
+   display: flex;
+    align-items: center;
+}
+
+.box2 {
+	 margin-left: 60px
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+  border: 1px solid #ddd;
+}
+
+th {
+  background-color: #f2f2f2;
+}

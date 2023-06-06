@@ -1,0 +1,43 @@
+<html layout:decorate="/template.html">
+<head>
+<title>Tickets</title>
+</head>
+<body>
+	<div layout:fragment="content">
+		<h1>List Ticket</h1>
+		
+		<a th:href="@{/ticket/new}">New</a>
+		<form th:action="@{/ticket/search}" method="get" th:object="${searchDTO}">
+			<!-- <input th:field="*{keyword}" placeholder="Tim ten.."> -->
+			<!-- <p th:errors="*{keyword}"></p> -->
+			<input name="currentPage" th:value="${searchDTO?.currentPage}"placeholder="Trang hien tai.."> 
+			<input name="size" th:value="${searchDTO?.size}" placeholder="SL ban ghi / trang">
+			<input name="sortedField" th:value="${searchDTO?.sortedField}" placeholder="Sap xep theo thuoc tinh" />
+			<button type="submit">Search</button>
+		</form>
+		
+		<table>
+			<tr>
+				<th>Id</th>
+				<th>Client Name</th>
+				<th>Client Phone</th>
+				<th>Content</th>
+				<th>Status</th>
+				<th>Action</th>
+			</tr>
+			<tr th:each="t : ${ticketList}">
+				<td th:text="${t.id}">1</td>
+				<td th:text="${t.clientName}">client name</td>
+				<td th:text="${t.clientPhone}">client phone</td>
+				<td th:text="${t.content}">Content</td>
+				<td th:text="${t.status}">status</td>
+				<td>
+					<a th:href="@{'/ticket/delete?id=' +${t.id}}">Delete</a> 
+					<a th:href="@{'/ticket/edit?id=' +${t.id}}">Edit</a>
+				</td>
+			</tr>
+		</table>
+		
+	</div>
+</body>
+</html>

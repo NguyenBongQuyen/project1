@@ -1,0 +1,49 @@
+<html layout:decorate="/template.html">
+<head>
+	<title>Departments</title>
+</head>
+<body>
+	<div layout:fragment="content">
+		<h1>List Department</h1>
+		<a th:href="@{/department/new}">New</a>
+
+		<form th:action="@{/department/search}" method="get"
+			th:object="${searchDTO}">
+			<input th:feild="*{keyword}" placeholder="Tim ten..">
+			<p th:errors="*{keyword}"></p>
+			<input name="currentPage" th:feild="*{currentPage}"
+				placeholder="Trang hien tai.."> <input name="size"
+				th:value="${searchDTO?.size}" placeholder="SL ban ghi/ trang">
+			<input name="sortedField" th:value="${searchDTO?.sortedField}"
+				placeholder="Sap xep theo thuoc tinh" />
+
+			<button type="submit">Search</button>
+		</form>
+
+		<p th:value="${totalPage}"></p>
+		<p th:value="${totalElements}"></p>
+
+		<table border="1">
+			<!-- Dòng tiêu đề bảng -->
+			<tr>
+				<th>ID</th>
+				<th>Name</th>
+				<th>Created At</th>
+				<th>Actions</th>
+			</tr>
+			<!-- Các dòng nội dung bảng Expression Language-->
+
+			<tr th:each="d : ${departmentList}">
+				<td th:text="${d.id}">1</td>
+				<td th:text="${d.name}">Test</td>
+				<td th:text="${#dates.format(d.createdAt, 'dd/MM/yyyy')}"></td>
+				<td>
+					<a th:href="@{'/department/delete?id=' + ${d.id}}">Delete</a>
+					<a th:href="@{'/department/edit?id=' + ${d.id}}">Edit</a>
+				</td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>
+
